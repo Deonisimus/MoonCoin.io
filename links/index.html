@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<p class="small muted">Replace with your actual Jetton master address. Always verify before trading.</p>
+</section>
+
+
+<section class="card">
+<div class="row" style="justify-content:space-between;align-items:flex-start;gap:16px">
+<div>
+<div class="small">Status</div>
+<div>✅ STON.fi — live · 🎯 DeDust — soon · 🛰️ Verification submitted</div>
+</div>
+<a class="btn" id="whitepaper" href="#" target="_blank">📄 Whitepaper</a>
+</div>
+</section>
+
+
+<footer class="small muted">© 2025 MOON. Not investment advice. DYOR.
+</footer>
+</div>
+
+
+<div class="toast" id="toast">Copied!</div>
+
+
+<script>
+// ====== CONFIG — replace with real links/contract ======
+const CONFIG = {
+CONTRACT: 'EQXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+STON_TRADE: 'https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=MOON',
+STON_POOL: 'https://app.ston.fi/pools',
+TONVIEWER: 'https://tonviewer.com', // replace when verified
+TELEGRAM: 'https://t.me/mooncryptoton',
+TWITTER: 'https://x.com/mooncoin_ton',
+INSTAGRAM: 'https://www.instagram.com/mooncoin_ton',
+WHITEPAPER: 'https://mooncointon.com/whitepaper.pdf'
+};
+
+
+// ====== Populate links ======
+const $ = (id)=>document.getElementById(id);
+$('buy').href = CONFIG.STON_TRADE;
+$('pool').href = CONFIG.STON_POOL;
+$('explorer').href = CONFIG.TONVIEWER;
+$('telegram').href = CONFIG.TELEGRAM;
+$('twitter').href = CONFIG.TWITTER;
+$('instagram').href = CONFIG.INSTAGRAM;
+$('whitepaper').href = CONFIG.WHITEPAPER;
+$('contractText').textContent = CONFIG.CONTRACT;
+
+
+// Copy button
+$('copyContract').addEventListener('click', async () => {
+try { await navigator.clipboard.writeText(CONFIG.CONTRACT); showToast('Contract copied'); } catch(e){ showToast('Copy failed'); }
+});
+
+
+// QR toggle (uses qrserver API for convenience)
+const makeQR = (data) => `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data)}`;
+$('qrToggle').addEventListener('click', () => {
+const box = $('qrBox');
+const img = $('qrImg');
+if (box.style.display === 'grid') { box.style.display = 'none'; return; }
+box.style.display = 'grid';
+img.src = makeQR(CONFIG.STON_TRADE);
+});
+
+
+// Toast
+function showToast(text){ const t=$('toast'); t.textContent=text; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 1600); }
+</script>
+</body>
+</html>
