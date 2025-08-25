@@ -25,15 +25,16 @@
 <script>
 // ====== CONFIG — replace with real links/contract ======
 const CONFIG = {
-CONTRACT: 'EQXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-STON_TRADE: 'https://app.ston.fi/swap?chartVisible=false&ft=TON&tt=MOON',
-STON_POOL: 'https://app.ston.fi/pools',
-TONVIEWER: 'https://tonviewer.com', // replace when verified
-TELEGRAM: 'https://t.me/mooncryptoton',
-TWITTER: 'https://x.com/mooncoin_ton',
-INSTAGRAM: 'https://www.instagram.com/mooncoin_ton',
-WHITEPAPER: 'https://mooncointon.com/whitepaper.pdf'
+  CONTRACT: 'EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
+  STON_TRADE: 'https://app.ston.fi/swap?ft=TON&tt=EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
+  STON_POOL: 'https://app.ston.fi/pools', // замени на URL конкретного пула, когда будет
+  TONVIEWER: 'https://tonviewer.com/jetton/EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
+  TELEGRAM: 'https://t.me/mooncryptoton',
+  TWITTER: 'https://x.com/mooncoin_ton',
+  INSTAGRAM: 'https://www.instagram.com/mooncoin_ton',
+  WHITEPAPER: 'https://mooncointon.com/whitepaper.pdf' // поменяй, когда зальём PDF
 };
+
 
 
 // ====== Populate links ======
@@ -46,7 +47,6 @@ $('twitter').href = CONFIG.TWITTER;
 $('instagram').href = CONFIG.INSTAGRAM;
 $('whitepaper').href = CONFIG.WHITEPAPER;
 $('contractText').textContent = CONFIG.CONTRACT;
-
 
 // Copy button
 $('copyContract').addEventListener('click', async () => {
