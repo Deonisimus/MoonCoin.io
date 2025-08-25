@@ -1,72 +1,102 @@
 <!DOCTYPE html>
-<p class="small muted">Replace with your actual Jetton master address. Always verify before trading.</p>
-</section>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MOON — Official Links</title>
+<style>
+  :root{--bg:#0a0a0f;--card:#11121a;--muted:#b9bdc7;--text:#f6f7fb;--accent:#ff2d55;--accent2:#c20b2f}
+  *{box-sizing:border-box}html,body{height:100%}body{margin:0;background:radial-gradient(1200px 600px at 70% -10%,rgba(255,45,85,.12),transparent),var(--bg);color:var(--text);font:500 16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Inter,Arial}
+  .wrap{max-width:760px;margin:0 auto;padding:32px}
+  header{display:flex;align-items:center;gap:16px;margin:10px 0 22px}
+  h1{margin:0;font-size:28px;letter-spacing:.3px}
+  .muted{color:var(--muted)} .small{font-size:14px}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 8px 28px rgba(0,0,0,.32)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px} @media (max-width:640px){.grid{grid-template-columns:1fr}}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));color:var(--text);text-decoration:none;font-weight:700;transition:.15s transform ease,.2s box-shadow ease}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.3)} .btn.primary{background:linear-gradient(180deg,var(--accent),var(--accent2));border-color:rgba(0,0,0,.2)}
+  code{background:#151624;padding:2px 6px;border-radius:6px;border:1px solid rgba(255,255,255,.06)}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .toast{position:fixed;right:16px;bottom:16px;background:rgba(20,20,28,.9);border:1px solid rgba(255,255,255,.08);color:#fff;padding:10px 14px;border-radius:12px;opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none}
+  .toast.show{opacity:1;transform:translateY(0)}
+  .qr{display:none;place-items:center;padding:10px}.qr img{width:160px;height:160px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#fff}
+  footer{margin:26px 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>MOON — Official Links</h1>
+    <span class="muted">Buy • Contract • Explorer • Socials</span>
+  </header>
 
+  <section class="card">
+    <div class="grid">
+      <a id="buy" class="btn primary" target="_blank" rel="noopener">🚀 Buy on STON.fi</a>
+      <a id="pool" class="btn" target="_blank" rel="noopener">💧 Liquidity Pool</a>
+      <a id="explorer" class="btn" target="_blank" rel="noopener">🔎 View on Tonviewer</a>
+      <a id="telegram" class="btn" target="_blank" rel="noopener">📣 Telegram</a>
+      <a id="twitter" class="btn" target="_blank" rel="noopener">𝕏 Twitter</a>
+      <a id="instagram" class="btn" target="_blank" rel="noopener">📷 Instagram</a>
+    </div>
+  </section>
 
-<section class="card">
-<div class="row" style="justify-content:space-between;align-items:flex-start;gap:16px">
-<div>
-<div class="small">Status</div>
-<div>✅ STON.fi — live · 🎯 DeDust — soon · 🛰️ Verification submitted</div>
+  <section class="card">
+    <div class="row">
+      <div class="small muted">Contract (TON Jetton):</div>
+      <code id="contractText">EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji</code>
+      <a class="btn" id="copyContract">Copy</a>
+      <a class="btn" id="qrToggle">Show QR</a>
+    </div>
+    <div class="qr" id="qrBox"><img id="qrImg" alt="QR code" /></div>
+    <p class="small muted">Always verify before trading.</p>
+  </section>
+
+  <section class="card">
+    <div class="row" style="justify-content:space-between;align-items:flex-start;gap:12px">
+      <div>
+        <div class="small muted">Status</div>
+        <div>✅ STON.fi — live · 🎯 DeDust — soon · 🛰️ Verification submitted</div>
+      </div>
+      <a class="btn" id="whitepaper" target="_blank">📄 Whitepaper</a>
+    </div>
+  </section>
+
+  <footer class="small muted">© 2025 MOON. Not investment advice. DYOR.</footer>
 </div>
-<a class="btn" id="whitepaper" href="#" target="_blank">📄 Whitepaper</a>
-</div>
-</section>
-
-
-<footer class="small muted">© 2025 MOON. Not investment advice. DYOR.
-</footer>
-</div>
-
 
 <div class="toast" id="toast">Copied!</div>
 
-
 <script>
-// ====== CONFIG — replace with real links/contract ======
-const CONFIG = {
-  CONTRACT: 'EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
-  STON_TRADE: 'https://app.ston.fi/swap?ft=TON&tt=EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
-  STON_POOL: 'https://app.ston.fi/pools', // замени на URL конкретного пула, когда будет
-  TONVIEWER: 'https://tonviewer.com/jetton/EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
-  TELEGRAM: 'https://t.me/mooncryptoton',
-  TWITTER: 'https://x.com/mooncoin_ton',
-  INSTAGRAM: 'https://www.instagram.com/mooncoin_ton',
-  WHITEPAPER: 'https://mooncointon.com/whitepaper.pdf' // поменяй, когда зальём PDF
-};
+  // === CONFIG ===
+  const CONFIG = {
+    CONTRACT: 'EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
+    STON_TRADE: 'https://app.ston.fi/swap?ft=TON&tt=EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
+    STON_POOL: 'https://app.ston.fi/pools', // replace with actual pool URL
+    TONVIEWER: 'https://tonviewer.com/jetton/EQCUpGSwZtKNSYpt4YCD-Ge1RCAc3pmaFnI5NCyzjANtq9Ji',
+    TELEGRAM: 'https://t.me/mooncryptoton',
+    TWITTER: 'https://x.com/mooncoin_ton',
+    INSTAGRAM: 'https://www.instagram.com/mooncoin_ton',
+    WHITEPAPER: 'https://mooncointon.com/whitepaper.pdf'
+  };
 
+  // === Populate links ===
+  const $ = id => document.getElementById(id);
+  $('buy').href = CONFIG.STON_TRADE;
+  $('pool').href = CONFIG.STON_POOL;
+  $('explorer').href = CONFIG.TONVIEWER;
+  $('telegram').href = CONFIG.TELEGRAM;
+  $('twitter').href = CONFIG.TWITTER;
+  $('instagram').href = CONFIG.INSTAGRAM;
+  $('whitepaper').href = CONFIG.WHITEPAPER;
+  $('contractText').textContent = CONFIG.CONTRACT;
 
-
-// ====== Populate links ======
-const $ = (id)=>document.getElementById(id);
-$('buy').href = CONFIG.STON_TRADE;
-$('pool').href = CONFIG.STON_POOL;
-$('explorer').href = CONFIG.TONVIEWER;
-$('telegram').href = CONFIG.TELEGRAM;
-$('twitter').href = CONFIG.TWITTER;
-$('instagram').href = CONFIG.INSTAGRAM;
-$('whitepaper').href = CONFIG.WHITEPAPER;
-$('contractText').textContent = CONFIG.CONTRACT;
-
-// Copy button
-$('copyContract').addEventListener('click', async () => {
-try { await navigator.clipboard.writeText(CONFIG.CONTRACT); showToast('Contract copied'); } catch(e){ showToast('Copy failed'); }
-});
-
-
-// QR toggle (uses qrserver API for convenience)
-const makeQR = (data) => `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data)}`;
-$('qrToggle').addEventListener('click', () => {
-const box = $('qrBox');
-const img = $('qrImg');
-if (box.style.display === 'grid') { box.style.display = 'none'; return; }
-box.style.display = 'grid';
-img.src = makeQR(CONFIG.STON_TRADE);
-});
-
-
-// Toast
-function showToast(text){ const t=$('toast'); t.textContent=text; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 1600); }
+  // Copy & QR
+  function showToast(t){const el=$('toast');el.textContent=t;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1600)}
+  $('copyContract').onclick = async ()=>{ try{await navigator.clipboard.writeText(CONFIG.CONTRACT);showToast('Contract copied');}catch(e){showToast('Copy failed')} };
+  const makeQR = d => `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(d)}`;
+  $('qrToggle').onclick = ()=>{ const box=$('qrBox'); const img=$('qrImg'); if(box.style.display==='grid'){box.style.display='none';} else {box.style.display='grid'; img.src=makeQR(CONFIG.STON_TRADE);} };
 </script>
 </body>
 </html>
+
